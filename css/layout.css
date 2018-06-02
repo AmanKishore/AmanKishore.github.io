@@ -35,6 +35,8 @@ header {
    width: 100%;
    background: #161415 url(../images/header-background.jpg) no-repeat top center;
    background-size: cover !important;
+   background-blend-mode: darken;
+   background-color: rgba(0, 0, 0, 0.3);
 	-webkit-background-size: cover !important;
    text-align: center;
    overflow: hidden;
@@ -643,7 +645,8 @@ call-to-action .button {
    background-size: cover !important;
 	-webkit-background-size: cover !important;
    background-attachment: fixed;
-
+   max-width: 100%;
+   min-width: 300px;
    position: relative;
    min-height: 200px;
    width: 100%;
