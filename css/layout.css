@@ -645,8 +645,7 @@ call-to-action .button {
    background-size: cover !important;
 	-webkit-background-size: cover !important;
    background-attachment: fixed;
-   max-width: 100%;
-   min-width: 300px;
+   background-color: rgba(0, 0, 0, 0.3);
    position: relative;
    min-height: 200px;
    width: 100%;
