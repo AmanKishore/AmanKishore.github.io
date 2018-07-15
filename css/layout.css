@@ -22,7 +22,11 @@
 /* a. General Styles
 /* ------------------------------------------------------------------ */
 
-body { background: #0f0f0f; }
+body { 
+  background: #0f0f0f;
+  padding: 0;
+  margin: 0;
+ }
 
 /* ------------------------------------------------------------------ */
 /* b. Header Styles
@@ -193,6 +197,7 @@ ul#nav li.current a { color: #F06000; }
    padding-top: 72px;
    padding-bottom: 24px;
    overflow: hidden;
+   width: 100%;
 }
 
 #about a, #about a:visited  { color: #fff; }
@@ -205,7 +210,7 @@ ul#nav li.current a { color: #F06000; }
 }
 #about p {
    line-height: 30px;
-   color: #7A7A7A;
+   color: rgb(223, 223, 223);
 }
 #about .profile-pic {
    position: relative;
@@ -225,7 +230,7 @@ ul#nav li.current a { color: #F06000; }
 #about .main-col { padding-right: 5%; }
 #home .download .button {
    margin-top: 6px;
-   background: #444;
+   background: rgb(145, 145, 145);
 }
 #home .download .button:hover {
    background: #fff;
@@ -1150,7 +1155,14 @@ footer .social-links li:first-child { margin-left: 0; }
 }
 
 .stats__col {
-  padding: 7.8rem 2rem 6.6rem;
+  padding: 7.8rem 1rem 6.6rem;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.stats__col.a {
+  padding: 7.8rem 16rem 6.6rem 0rem;
   position: relative;
   overflow: hidden;
   white-space: nowrap;
@@ -1203,7 +1215,7 @@ footer .social-links li:first-child { margin-left: 0; }
 }
 
 .stats__col--highlight {
-  background: #111111 url("../images/count-bg.jpg");
+  background: #030e9cdc url("../images/count-bg.jpg");
   background-size: 175px 175px;
   position: relative;
 }
