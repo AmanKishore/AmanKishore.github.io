@@ -39,7 +39,7 @@ header {
    width: 100%;
    background: #161415 url(../images/header-background.jpg) no-repeat top center;
    background-size: cover !important;
-   background-blend-mode: lighten;
+   background-blend-mode: darken;
    background-color: rgba(0, 0, 0, 0.4);
 	-webkit-background-size: cover !important;
    text-align: center;
@@ -659,6 +659,7 @@ call-to-action .button {
    min-height: 200px;
    width: 100%;
    overflow: hidden;
+   border-bottom: 30px solid #fff;
 }
 #testimonials .text-container {
    padding-top: 96px;
@@ -802,7 +803,7 @@ call-to-action .button {
  .s-contact {
   background: #161415 url(../images/contact-background.jpg) no-repeat top center;
   background-size: cover !important;
-  background-blend-mode: lighten;
+  background-blend-mode: darken;
   background-color: rgba(0, 0, 0, 0.4);
 	-webkit-background-size: cover !important;
   background-repeat: no-repeat;
