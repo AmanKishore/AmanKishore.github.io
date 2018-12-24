@@ -2129,7 +2129,7 @@ body {
 }
 
 .feature-area {
-  background: #fdd050;
+  background: #e98120;
 }
 
 .feature-area .icon {
@@ -2150,7 +2150,7 @@ body {
 }
 
 .feature-area .desc p {
-  color: #555;
+  color: rgb(236, 219, 219);
 }
 
 .single-feature {
