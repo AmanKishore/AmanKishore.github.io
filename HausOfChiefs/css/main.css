@@ -2028,7 +2028,7 @@ body {
 }
 
 .banner-area {
-  background: url(../img/banner-bg.jpg) no-repeat center center/cover;
+  background: url(../img/hocstage.JPG) no-repeat center center/cover;
 }
 
 .banner-area .overlay-bg {
@@ -2595,4 +2595,53 @@ footer .footer-nav li a:hover {
 .elements-banner {
   background: #f9f9ff;
   color: #000 !important;
+}
+
+#about {
+  background: #2B2B2B;
+  padding-top: 72px;
+  padding-bottom: 24px;
+  overflow: hidden;
+  width: 100%;
+}
+
+#about a, #about a:visited  { color: #fff; }
+#about a:hover, #about a:focus { color: #11ABB0; }
+
+#about h2 {
+  font: 22px/30px 'opensans-bold', sans-serif;
+  color: #fff;
+  margin-bottom: 12px;
+}
+#about p {
+  line-height: 30px;
+  color: rgb(223, 223, 223);
+}
+#about .profile-pic {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+}
+#about .contact-details { width: 41.66667%; }
+#home .download {
+  width: 58.33333%;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+#about .main-col { padding-right: 5%; }
+#home .download .button {
+  margin-top: 6px;
+  background: rgb(145, 145, 145);
+}
+#home .download .button:hover {
+  background: #fff;
+  color: #2B2B2B;
+}
+#home .download .button i {
+  margin-right: 15px;
+  font-size: 20px;
 }
