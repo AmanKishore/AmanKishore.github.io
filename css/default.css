@@ -600,8 +600,8 @@ e. Others
  /* fixed width for IE8 */
  .ie .row { width: 1000px ; }
  
- .narrow .row { max-width: 980px; }
- 
+ .narrow .row { max-width: 980px;}
+
  .row .row { width: auto; max-width: none; margin: 0 -20px; }
  
  /* row clearing */

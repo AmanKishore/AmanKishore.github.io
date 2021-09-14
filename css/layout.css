@@ -659,7 +659,6 @@ call-to-action .button {
    min-height: 200px;
    width: 100%;
    overflow: hidden;
-   border-bottom: 30px solid #fff;
 }
 #testimonials .text-container {
    padding-top: 96px;
@@ -801,18 +800,28 @@ call-to-action .button {
  * ------------------------------------------------------------------- */
 
  .s-contact {
-  background: #161415 url(../images/contact-background.jpg) no-repeat top center;
+  background: #161415 url(../images/nyc.jpeg) no-repeat top center;
   background-size: cover !important;
-  background-blend-mode: darken;
+  background-blend-mode: normal;
   background-color: rgba(0, 0, 0, 0.4);
 	-webkit-background-size: cover !important;
   background-repeat: no-repeat;
   background-position: 50% 55%;
   padding-top: 5rem;
-  padding-bottom: 10rem;
+  padding-bottom: 15rem;
   color: rgba(255, 255, 255, 0.5);
   position: relative;
 }
+
+/* .s-contact::before {
+   content: "";
+   position: absolute;
+   top: 0px;
+   right: 0px;
+   bottom: 0px;
+   left: 0px;
+   background-color: rgba(255, 255, 255, 0.2);
+} */
 
 .s-contact .overlay {
   position: absolute;
@@ -1067,7 +1076,7 @@ call-to-action .button {
 
 footer {
    padding-top: 48px;
-   margin-bottom: 48px;
+   margin-bottom: 0px;
    color: #303030;
    font-size: 14px;
    text-align: center;
@@ -1112,8 +1121,16 @@ footer .social-links li {
     margin: 0;
     padding: 0;
     margin-left: 42px;
-    color: #F06000;
+    /* color: #F06000; */
 }
+
+/* header .social li {
+   display: inline-block;
+   margin: 0 15px;
+   padding: 0;
+} */
+header .social-links li a { color: #fff; }
+header .social-links li a:hover { color: #11ABB0; }
 
 footer .social-links li:first-child { margin-left: 0; }
 
@@ -1163,7 +1180,7 @@ footer .social-links li:first-child { margin-left: 0; }
 }
 
 .stats__col.a {
-  padding: 7.8rem 16rem 6.6rem 0rem;
+  padding: 7.8rem 1rem 6.6rem;
   position: relative;
   overflow: hidden;
   white-space: nowrap;
