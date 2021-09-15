@@ -34,8 +34,9 @@ body {
 
 header {
    position: relative;
-   height: 800px;
+   height: 100% !important;
    min-height: 500px;
+   padding: 5%;
    width: 100%;
    background: #161415 url(../images/header-background.jpg) no-repeat top center;
    background-size: cover !important;
@@ -654,6 +655,7 @@ call-to-action .button {
    background-size: cover !important;
 	-webkit-background-size: cover !important;
    background-attachment: fixed;
+   background-blend-mode: darken;
    background-color: rgba(0, 0, 0, 0.7);
    position: relative;
    min-height: 200px;
