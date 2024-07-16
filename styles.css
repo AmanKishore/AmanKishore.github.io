@@ -39,3 +39,13 @@ a:hover {
     height: 30px;
     margin-right: 10px;
 }
+
+.article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.article-item {
+    margin-bottom: 10px;
+}
