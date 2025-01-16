@@ -49,3 +49,7 @@ a:hover {
 .article-item {
     margin-bottom: 10px;
 }
+
+#maincontent p {
+    text-align: justify;
+}
