@@ -53,3 +53,13 @@ a:hover {
 #maincontent p {
     text-align: justify;
 }
+
+.last-updated {
+    margin-top: -10px;
+}
+
+.last-updated em {
+    font-style: italic;
+    color: #666;
+    font-size: 0.9em;
+}
