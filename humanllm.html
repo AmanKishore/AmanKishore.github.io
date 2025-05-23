@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="gtag.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLMs are Humans - Aman Kishore</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="maincontent">
+        <h2>LLMs are Humans</h2>
+        <p class="last-updated"><em>Last updated: May 23, 2025</em></p>
+        
+        <p>
+            Most engineers over complicate AI application development. I get it. It's fun to design complex systems to achieve an outcome. But LLMs have drastically changed in the last 2 years. For the vast majority of business use cases, you don't need some complex GraphRAG algo to design an AI system.
+        </p>
+        
+        <p>
+            Treat the LLM like a human. Instead of jumping to the newest VectorDB to design your retrieval system, question how a human would accomplish the same task.
+        </p>
+        
+        <p>
+            I'll give an example. Let's say you're an analyst that has to comb through 100 financial documents to understand the EBITDA of a business you are evaluating. The analyst would read through each document, pull the relevant information into a consolidated document, then analyze the data.
+        </p>
+        
+        <p>
+            Today, most AI engineers would immediately jump to VectorDBs, chunk the data, and rely on embeddings to find ALL of the relevant information. This method guarantees an incomplete result as embeddings are lossy<sup><a href="#footnote1">1</a></sup>.
+        </p>
+        
+        <p>
+            Now assume the LLM is a human. Have thousands of analysts (lightweight LLMs) read through every document in the dataset in parallel. Each human (LLM) can track of all the relevant information into a consolidated document. Finally the partner (a heavy LLM) can generate a final answer from all of the gathered context.
+        </p>
+        
+        <p>
+            Sure the latency and cost is higher, but isn't that worth it for those valuable tasks? Next time you catch yourself over complicating an AI application, imagine how you'd solve the same problem if you were given access to infinite humans.
+        </p>
+        
+        <p>
+            As LLMs get better, <strong>LLMs are humans</strong>.
+        </p>
+        
+        <p class="footnote">
+            <sup>1</sup> Embeddings are a numerical representation of the underlying data. We can use this representation to find similar information, however embeddings don't indicate intent. Imagine asking a question about "why is my code bad" and trying to use the numerical representations of the underlying code to find "bad code".
+        </p>
+        
+        <div class="back-link" style="margin-top: 2em;">
+            <a href="index.html">← Back to home</a>
+        </div>
+    </div>
+</body>
+</html>

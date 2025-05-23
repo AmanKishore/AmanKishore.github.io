@@ -63,3 +63,12 @@ a:hover {
     color: #666;
     font-size: 0.9em;
 }
+
+.footnote {
+    font-size: 0.8em;
+    font-style: italic;
+    margin-top: 2em;
+    border-top: 1px solid #ccc;
+    padding-top: 1em;
+    color: #666;
+}
