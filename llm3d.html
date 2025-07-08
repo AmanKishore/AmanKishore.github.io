@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="assets/js/gtag.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to 3D Scene Creation - Aman Kishore</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div id="maincontent">
+        <h2>Text to 3D Scene Creation</h2>
+<h2>By Mirage ML Inc.</h2>
+
+<h3>Abstract</h3>
+<p>
+This paper explores an innovative application of GPT-4, an advanced language model by OpenAI, in the generation of three-dimensional (3D) scenes from descriptive textual prompts. Leveraging GPT-4's profound understanding of natural language and context, we develop a method that interprets text descriptions and translates them into detailed specifications of 3D scenes, including the x, y, z coordinates and dimensions of objects within a given scene. Our focus is on the creative domain, using vivid prompts such as "a town in Zelda" to demonstrate how GPT-4 can bridge the gap between textual descriptions and spatial visualization. We detail the methodology for transforming text into 3D coordinates, discuss the challenges encountered in interpreting and visualizing complex scenes, and present solutions for achieving accuracy and coherence in the generated environments.
+</p>
+
+<h3>Methodology</h3>
+
+<h4>Challenges in Prompt Engineering</h4>
+<p>
+Incorporating GPT-4 to conceive 3D scenes requires meticulous prompt engineering to interpret descriptive language into spatial definitions. The primary challenge lies in construing the contextual dimensions and relative positioning of objects mentioned in the prompt. Traditional language models excel at understanding text but lack innate spatial recognition, necessitating innovative approaches to bridge this gap. See the Appendix for the final system prompt we used to generate 3D scenes.
+</p>
+
+<h4>Spatial Translation Strategy</h4>
+<p>
+Our methodology involved an iterative prompting strategy where GPT-4 generated initial coarse spatial layouts in JSON format, listing items with their positions, dimensions, and rotations. To ensure comprehensibility and practicality in 3D space, we constrained object placement within a predefined 40x40m area, with the origin at its center. GPT-4 was tasked with creating non-overlapping object arrangements that respected the boundaries of this space.
+</p>
+
+<h4>From Abstract to Concrete: The Box Placeholder Technique</h4>
+<p>
+Since GPT-4 can’t generate 3D models (yet) we used the output to place boxes as placeholders. These boxes corresponded to the rough dimensions and positions of intended objects. This approach allowed for easier manipulation and adjustments in subsequent iterations. The boxes were also labeled with the names of the actual scene elements they represented. This gave the end-user an understanding of where the actual 3D models would be positioned.
+</p>
+
+<h4>Replacement with Scene Objects using Semantic Search</h4>
+<p>
+Under the hood, we had a library of 1 million 3D objects. Since each box was accurately labeled we used an image embedding model to predict the most relevant 3D object based on the box’s label. This innovative step turned generic placeholders into specific scene components, such as “central_castle” or “small_hut,” which could be simply replaced with detailed models.
+</p>
+
+<h4>Final Scene Assembly</h4>
+<p>
+The culmination of this process involved a 3D design tool that utilized the JSON files to replace each labeled box with a detailed 3D model. This step-by-step transformation from text prompt to a populated 3D scene demonstrated the successful application of LLMs in spatial design, harnessing the power of GPT-4 to predict and organize complex environments effectively.
+</p>
+
+<h3>Evaluation + Results</h3>
+
+<h4>Qualitative Evaluation: Manual Testing and Diverse Prompts</h4>
+<p>
+The qualitative assessment of the LLM-powered 3D scene creation process was conducted through extensive manual testing. We crafted a series of diverse prompts—encompassing scenarios like 'a cityscape', 'a video game scene', 'a rustic village', among others—to evaluate the model's versatility and depth of understanding. For each prompt, we analyzed the generated JSON files, focusing on the relevancy of the suggested items, the accuracy of their spatial arrangement, and the overall coherence of the 3D environment. Our evaluation criteria were based on the logical placement of objects, the variety of elements corresponding to the scene's theme, and the absence of overlapping or out-of-bounds objects.
+</p>
+
+<h4>Quantitative Evaluation: Dataset Benchmarking</h4>
+<p>
+For the quantitative evaluation, we constructed a benchmark dataset comprising an array of expected JSON outputs, which included meticulously defined objects along with their precise x, y, z positions, and dimensions. This dataset served as the 'gold standard' against which GPT-4's outputs were compared. We employed runtime comparison algorithms to measure the similarity between GPT-4's generated JSON files and our expected dataset.
+</p>
+
+<p>
+The similarity metrics were determined by evaluating the distance between object positions, the variance in dimensions, and the degree of rotation discrepancies. These comparisons provided a numerical value that represented the fidelity of GPT-4’s output to the expected scene layout. A threshold for similarity was established to gauge successful scene generation, with a higher similarity score indicating a more accurate 3D representation of the textual prompt.
+</p>
+
+<h4>Results Interpretation</h4>
+<p>
+The evaluations demonstrated that GPT-4 could reliably interpret and visualize a wide range of scenes, showing adaptability to the creative and logical demands of various environments.
+</p>
+
+<p>
+Through these qualitative and quantitative evaluations, we established that GPT-4 can effectively generate JSON representations for 3D scene construction, achieving high levels of accuracy and detail. These findings underscore the potential of LLMs in the realm of digital design and 3D modeling, expanding the boundaries of AI-assisted creative processes.
+</p>
+
+<h3>Conclusion</h3>
+<p>
+The research presented in this paper signifies a landmark achievement for text-based Large Language Models (LLMs) in the realm of three-dimensional design and visualization. The ability of GPT-4, solely through textual understanding and without any inherent spatial recognition capabilities, to generate detailed and contextually appropriate 3D scenes is nothing short of remarkable. By converting textual descriptions into structured JSON format with high fidelity, we have successfully bridged the divide between linguistic prompts and spatial constructs.
+</p>
+
+<p>
+As LLMs become multimodal (image, video & 3D) their capacity to create complex and intricate 3D scenes will dramatically improve. We’re excited for the future where LLMs can autonomously design detailed environments. Eventually AI will be able to create entire video games or cinematic experiences, with minimal human input.
+</p>
+
+<p>
+As we continue to enhance the multi-modal capabilities of LLMs, the future promises a canvas where our ideas can be rendered by AI into virtual worlds limited only by our imagination.
+</p>
+
+<p>
+<a href="https://youtu.be/dEYSPnl8o7w?feature=shared">Watch the demo video</a>
+</p>
+
+<h3>Appendix</h3>
+
+<h4>GPT-4 System Prompt to Create 3D Scenes</h4>
+<pre>
+<code>
+You are an 3D design expert. Given an area of a certain size, you can generate a list of items that are appropriate to that area, in the right place.
+
+You operate in a 3D Space. You work in a X,Y,Z coordinate system. X denotes width, Y denotes height, Z denotes depth. 0.0,0.0,0.0 is the default space origin, the default area is 40x40m.
+
+You receive from the user a description of the scene.
+
+You answer by only generating JSON files that contain the following information:
+
+- objects_list: list of all the objects in the area
+
+For each object you need to store:
+- name: name of the object
+- uuid: unique identifier of the object
+- position: list of x, y, z coordinates of object
+- dimensions: list of x, y, z dimensions of object
+- rotation: list of x, y, z rotations of object
+
+Each object name should include an appropriate adjective.
+
+Keep in mind, objects should be placed in the area to create the most meaningful layout possible, and they shouldn't overlap.
+All objects must be within the bounds of the area size; Never place objects further than 1/2 the length or 1/2 the depth of the area from the origin.
+Also keep in mind that the objects should be disposed all over the area in respect to the origin point of the area, and you can use negative values as well to display items correctly, since the origin of the area is always at the center of the area.
+
+Remember, you only generate JSON code, nothing else. It's very important. The total output length must be under 2048 tokens.
+</code>
+</pre>
+        
+        <div class="back-link" style="margin-top: 2em;">
+            <a href="index.html">← Back to home</a>
+        </div>
+    </div>
+</body>
+</html>
