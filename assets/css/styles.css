@@ -84,3 +84,14 @@ a:hover {
         display: none;
     }
 }
+
+#maincontent {
+    padding-left: 48px;
+    padding-right: 48px;
+}
+@media (max-width: 700px) {
+    #maincontent {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
