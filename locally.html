@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="assets/js/gtag.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locally This, Locally That - Aman Kishore</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div id="maincontent">
+        <h2>Locally This, Locally That</h2>
+        <p class="last-updated"><em>Last updated: April 23, 2026</em></p>
+
+        <p>I built an AI app that runs completely on device. No servers, API requests, or data leaving the device. Local models are finally getting good. Just look at the recent releases from <a href="https://x.com/Alibaba_Qwen">Qwen</a> and <a href="https://x.com/googlegemma">Gemma</a> to see that the gap is shrinking.</p>
+
+        <p>I am excited about what this unlocks for hardware, consumer, and privacy.</p>
+
+        <p>Robots and edge devices can't rely on perfect signal for their user experience. A robot working in a farm, a construction site, or even a living room can't just freeze up the moment it loses connection. Smart glasses and similar devices running local models have lower latency and much better UX.</p>
+
+        <p>For consumer apps, local LLMs make free tiers economically viable. Growth at all costs becomes very expensive when every user burns GPUs on your dime. Local inference flips that math.</p>
+
+        <p>The third vector is privacy. I have mixed feelings here. Anecdotally, most of my friends don't care where their data goes. My guess is, in the future, privacy-sensitive fields like law and medicine will require on-device or on-prem models to stay compliant. Users won't care, but regulated professionals will.</p>
+
+        <p>The hardware is already here. We're all walking around with phones that can comfortably run 2B-parameter models. So I wanted to see how far I could push that with a real app.</p>
+
+        <h3>Ambrosia</h3>
+
+        <p>I built Ambrosia, an offline AI journaling app to track how my skin responds to different diets and products. I picked skin specifically for two reasons: I've always wanted a better way to watch conditions and progress over time, and photos are a natural unit of a journal entry.</p>
+
+        <p>Two things I love about the app:</p>
+
+        <ol>
+            <li>AI-generated labels and trend tracking, all local.</li>
+            <li>Everything including the images stays on device.</li>
+        </ol>
+
+        <h3>The Base Model</h3>
+
+        <p>I went with Qwen3-VL-2B: multimodal, small enough to run on my iPhone, and already well-optimized for llama.cpp. I used the Q4_K_M quantized version from <a href="https://huggingface.co">Hugging Face</a>, and ran everything through <a href="https://www.runanywhere.ai">RunAnywhere</a> because their on-device SDKs are the best I've used.</p>
+
+        <h3>Finetuning the Model Locally</h3>
+
+        <p>I wanted to prove that I could take a base model and finetune it end-to-end locally on my MacBook (M2 Max).</p>
+
+        <p>With Codex, I trained a small LoRA adapter on MedQA, then merged and exported it back into the same Q4_K_M GGUF format so that it would work on my iPhone.</p>
+
+        <p>I also experimented with autoresearch, Karpathy's autonomous framework for model training, to maximize performance. I gave Codex the source code and let it sweep configurations. The sweep landed on a lower learning rate (1e-4) as the winner, beating baseline by ~5 points on the micro-run. Scaled up to full validation, it held at 47.88%.</p>
+
+        <p>Finetuned model: <a href="https://huggingface.co/amankishore/qwen3-vl-2b-medqa-gguf">huggingface.co/amankishore/qwen3-vl-2b-medqa-gguf</a></p>
+
+        <h3>Constraining the Task</h3>
+
+        <p>Initially I built Ambrosia as a chat first experience. It was bad. I would document a new skin issue, and the model would respond with three long paragraphs about consulting a dermatologist.</p>
+
+        <p>I constrained the task. Qwen was much better at generating labels from images and analyzing trends across journal entries. Ambrosia went from a worse medical ChatGPT to a journal with ambient AI trend analysis.</p>
+
+        <p>This is why small models are underrated. They should not be compared to general assistants like ChatGPT. They're much better as narrow specialists constrained to a few tasks.</p>
+
+        <p>Since this task is disjoint from MedQA, I built a small eval set of journal entries a user might track (acne, texture, redness, etc.) and compared the finetuned model against the base. The finetune gave a small but real lift on label quality, while trend analysis was unchanged. For a 2B model doing a task it wasn't trained for, I'll take it.</p>
+
+        <h3>Edge Intelligence</h3>
+
+        <p>Ambrosia was a small experiment, but it maps to the shape of the future: take a small base model, aggressively constrain the domain, tune for your specific task, ship it. Repeat.</p>
+
+        <p>Chips keep getting faster. Small models keep getting smarter. Eventually these lines will converge. When they do, you'll have the power of AGI, in the palm of your hand.</p>
+
+        <div class="icons">
+            <a href="index.html">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
