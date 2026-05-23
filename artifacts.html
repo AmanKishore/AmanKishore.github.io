@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="assets/js/gtag.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps, not Artifacts - Aman Kishore</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div id="maincontent">
+        <h2>Apps, not Artifacts</h2>
+        <p class="last-updated"><em>Last updated: May 20, 2026</em></p>
+
+        <p>A few weeks ago I built myself a workout tracker. It's an iOS shell that wraps a WebView, the component that renders HTML, and had Codex generate the actual tracker inside it. Every time I want a new feature, I ask for one. It updates. I log my lifts.</p>
+
+        <p>This is what personal software should feel like in 2026.</p>
+
+        <p>When Claude released Artifacts back in June 2024, seriously, I checked, almost two years ago, it was a clear glimpse of the future. But chat apps have barely changed since, even as the models underneath got wildly more capable. Codex and Opus now write real software with minimal hand-holding. The interface hasn't caught up.</p>
+
+        <p>Here's what the next version of ChatGPT, or Claude, needs:</p>
+
+        <ol>
+            <li><strong>Long Running Chats</strong> - Compaction and filesystem access make the multi-chat experience feel increasingly obsolete. If models can store scripts, memories, files, and state, then a chat should be closer to a persistent workspace than a disposable thread.</li>
+            <li><strong>Apps not Artifacts</strong> - Artifacts have no storage and aren't dynamic. Drop a storage layer underneath them, SQLite in the filesystem works fine, and suddenly an app remembers what you did last time, and can be updated without losing state.</li>
+            <li><strong>Dynamic Sharing</strong> - When I send my workout tracker to a friend, they should get the live version without me redeploying anything. Sharing should work more like syncing a Notion page than shipping software.</li>
+        </ol>
+
+        <p>Once those three things exist, the ceiling on personal software goes way up. A travel agent surprises me with vacations. A health optimizer that tells me what to do. A finance bot that invests for me. None of these need to ship through the App Store. They need HTML, a model, and a little memory. The phone stops being a grid of apps.</p>
+
+        <p>The next iPhone will just be a physical ChatGPT wrapper.</p>
+
+        <div class="icons">
+            <a href="index.html">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
