@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Anjana - Aman Kishore</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        .private-gate {
+            margin-top: 2em;
+        }
+
+        .private-gate label {
+            display: block;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .private-gate input {
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 360px;
+            padding: 10px 12px;
+            border: 1px solid #bbb;
+            border-radius: 4px;
+            font: inherit;
+        }
+
+        .private-gate button {
+            display: block;
+            margin-top: 12px;
+            padding: 9px 14px;
+            border: 1px solid #111;
+            border-radius: 4px;
+            background: #111;
+            color: #fff;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .private-gate button:hover {
+            background: #333;
+        }
+
+        .private-error {
+            min-height: 1.6em;
+            margin-top: 0.75em;
+            color: #b00020;
+        }
+
+        .poem-content p {
+            text-align: left;
+            margin: 0 0 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div id="maincontent">
+        <div class="private-title">
+            <h2>Anjana</h2>
+            <p class="last-updated"><em>Published: June 5, 2026</em></p>
+        </div>
+
+        <div id="gate" class="private-gate">
+            <form id="password-form">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" autocomplete="current-password" autofocus required>
+                <button type="submit">Open</button>
+                <div id="error" class="private-error" aria-live="polite"></div>
+            </form>
+        </div>
+
+        <div id="content" hidden></div>
+    </div>
+
+    <script>
+        const encryptedArticle = {
+            iterations: 250000,
+            salt: "wiyeYxWsxwb75P5okHyiBA==",
+            iv: "diciyDQBUjA3MWmf",
+            data: "PadL1sA4stVE0ROkijo3yZaIdSSiOTQswkBPkgiObDFUpu8+PXsxVZQZxsXaQ7bL7hl2vhKzYE3snIwWmqwiOt65NaeQCn4xW3LaW9uue1vMFKsQD2cbJ5MHoON3/DT9rHkc5oBbAk68KF3vcMG4iIkLnzeVaRvm6kjN0+B6++7mp/JpH7158D909KUZKroBH8vAcmywgDNJzQCGQ1MgUAH8Vjirg/L5jsx6cXTqHAIQVaHQpikEJZm3mPLbq0zkHnwPJmBCcBVO2wUhd7Y96M9gETVt5suIwDSbqZz4uVMapewuI/FztuoKSCvl2BGxM2eUzyt1KH+SYGunB+msqtdBD8/h7HdVuthtKmN+xGokMyjABfojDDK6T3rk9BUhdPfLXNHSXD2e0IZpPCzwwycDj7YMIqmyVZfxChqezDOK2rvrhDo/TL99dhzfPAa6OHQ8uGFsPnBTd9Du0bXXJFf5oyUHrnIroVH9U0BBPfZn09wRel6EjCAw6SgZWSAxmaCP+DynV571o4tOELFQmedbO95mLAwVcxWK+C8PESNkqMayvLrkFPPF4U5pdjnB5wb0Q7IqXCN/LvsjfVyZ4HloQ2vtQbxPzBT9+6h+b4LQCPdd+cSmb9Vt4y8VyOJNGHFufrhXw8sow6DdOmZC8EBH6rQIz7mwfDwpNjd+pewneOenwyn6UK3fUtqyG5eNJcDQk8w8rPPIK64x9CvXhITS/4HEE8R3NwowVt94XQ5Uz7bHZKebXihYxHkAvR3zd/beTZ0GVxEoMNPMLQ8="
+        };
+
+        function decodeBase64(value) {
+            return Uint8Array.from(atob(value), character => character.charCodeAt(0));
+        }
+
+        async function decryptArticle(password) {
+            const encoder = new TextEncoder();
+            const keyMaterial = await crypto.subtle.importKey(
+                "raw",
+                encoder.encode(password),
+                "PBKDF2",
+                false,
+                ["deriveKey"]
+            );
+
+            const key = await crypto.subtle.deriveKey(
+                {
+                    name: "PBKDF2",
+                    salt: decodeBase64(encryptedArticle.salt),
+                    iterations: encryptedArticle.iterations,
+                    hash: "SHA-256"
+                },
+                keyMaterial,
+                { name: "AES-GCM", length: 256 },
+                false,
+                ["decrypt"]
+            );
+
+            const decrypted = await crypto.subtle.decrypt(
+                {
+                    name: "AES-GCM",
+                    iv: decodeBase64(encryptedArticle.iv)
+                },
+                key,
+                decodeBase64(encryptedArticle.data)
+            );
+
+            return new TextDecoder().decode(decrypted);
+        }
+
+        document.getElementById("password-form").addEventListener("submit", async event => {
+            event.preventDefault();
+
+            const form = event.currentTarget;
+            const passwordInput = form.elements.password;
+            const error = document.getElementById("error");
+            const button = form.querySelector("button");
+
+            error.textContent = "";
+            button.disabled = true;
+            button.textContent = "Opening...";
+
+            try {
+                const article = await decryptArticle(passwordInput.value);
+                passwordInput.value = "";
+                document.getElementById("content").innerHTML = article;
+                document.getElementById("content").hidden = false;
+                document.getElementById("gate").hidden = true;
+            } catch (decryptionError) {
+                error.textContent = "Incorrect password.";
+                passwordInput.value = "";
+                passwordInput.focus();
+            } finally {
+                button.disabled = false;
+                button.textContent = "Open";
+            }
+        });
+    </script>
+</body>
+</html>
